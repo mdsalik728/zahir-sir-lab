@@ -1,0 +1,22 @@
+#include<iostream>
+#include <climits>
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string s="ababab";
+    int n=s.size()-1;
+    int m=1;
+    int size=0;
+    while(n>=0){
+        if(s.substr(0,n)==s.substr(m,s.size()-m)){
+            size=n;
+            cout<<s.substr(0,n)<<" "<<s.substr(m,s.size()-m);
+            break;
+
+        }
+        m++;
+        n--;
+
+    }
+    cout<<size<<endl;
+}
