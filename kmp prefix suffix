@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// Function to compute the prefix function (π array)
+vector<int> computePrefixFunction(const string& pattern) {
+    int m = pattern.length();
+    vector<int> pi(m, 0); // Initialize π array with zeros
+
+    for (int i = 1; i < m; ++i) {
+        int k = pi[i - 1];
+        // Backtrack until we find a match or reach the beginning
+        while (k > 0 && pattern[k] != pattern[i]) {
+            k = pi[k - 1];
+        }
+        if (pattern[k] == pattern[i]) {
+            ++k;
+        }
+        pi[i] = k;
+    }
+
+    return pi;
+}
+
+int main() {
+    string pattern;
+    cout << "Enter the pattern string: ";
+    cin >> pattern;
+
+    vector<int> pi = computePrefixFunction(pattern);
+
+    cout << "Prefix function (π array): ";
+    for (int val : pi) {
+        cout << val << " ";
+    }
+    cout << endl;
+
+
+    return 0;
+}
